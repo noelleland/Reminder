@@ -1,2 +1,11 @@
-# Remainder
-Graduation project of Chungnam National University Team NaLang
+일정관리 & 일기 어플 (REMINDER) 
+==========================================================
+NARANG팀 졸업프로젝트 - 충남대학교 컴퓨터공학과
+----------------------------------------------------------
+# 목표
+자연어처리 기술(음성인식, 사진)을 활용한 일정관리 및 일기 어플리케이션 개발
+
+# 설명
+
+# 연락처
+김연훈 : yeonhunkim@mensakorea.org
