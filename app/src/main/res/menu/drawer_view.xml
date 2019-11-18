@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_calendar"
+        android:title="@string/word_calendar"/>
+    <item
+        android:id="@+id/menu_timetable"
+        android:title="@string/word_timetable"/>
+    <item
+        android:id="@+id/menu_writeDiary"
+        android:title="@string/word_writeDiary"/>
+
+</menu>
