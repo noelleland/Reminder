@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Remainder</string>
+    <string name="title_activity_lock_screen">LockScreenActivity</string>
+    <string name="button_LockScreenOK">OK</string>
+    <string name="button_LockScreenCancel">Cancel</string>
+    <string name="word_calendar">달력</string>
+    <string name="word_timetable">시간표</string>
+    <string name="word_writeDiary">일기쓰기</string>
+
 </resources>
