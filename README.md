@@ -49,5 +49,16 @@ NARANG팀 졸업프로젝트 - 충남대학교 컴퓨터공학과
     - 문장형
 <br /><br />
   
+# 참조
+## - Github Markdown
+  - Markdown 작성법 : <https://gist.github.com/ihoneymon/652be052a0727ad59601>
+   
+## - 안드로이드 레이아웃
+  - 커스텀 달력 예제 : <https://namget.tistory.com/entry/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-%EC%BB%A4%EC%8A%A4%ED%85%80-%EB%8B%AC%EB%A0%A5-%EC%98%88%EC%A0%9C-Android-Custom-CalendarView-Example>
+  - Fragment 예제 : http://esocwiki.blogspot.com/2018/01/android-using-fragment.html
+  
+## - 데이터베이스
+  - Room 라이브러리 예제 : <https://namget.tistory.com/entry/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-ROOM-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0-%EC%BD%94%EB%A3%A8%ED%8B%B4>
+  
 # 연락처
 김연훈 : yeonhunkim@mensakorea.org
