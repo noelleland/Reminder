@@ -58,19 +58,19 @@
         </LinearLayout>
     </LinearLayout>
 
-    <item
+    <Button
         android:id="@+id/button_menu_calendar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/word_calendar" />
 
-    <item
-        android:id="@+id/button_menu_inputMemo"
+    <Button
+        android:id="@+id/button_menu_writememo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/word_writeMemo" />
 
-    <item
+    <Button
         android:id="@+id/button_menu_timeline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
