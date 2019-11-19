@@ -1,6 +1,7 @@
 package com.example.remainder
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import com.example.remainder.fragment.CalendarFragment
 import com.example.remainder.fragment.TimelineFragment
 import com.example.remainder.fragment.WriteMemoFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.drawer_menu.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,7 +41,27 @@ class MainActivity : AppCompatActivity() {
 
             override fun onDrawerOpened(drawerView: View){
                 super.onDrawerOpened(drawerView)
-                //toast("Drawer opened")
+
+                button_menu_calendar.setOnClickListener {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment, CalendarFragment())
+                        .commit()
+                    drawer_layout.closeDrawer(Gravity.LEFT)
+                }
+
+                button_menu_writememo.setOnClickListener {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment, WriteMemoFragment())
+                        .commit()
+                    drawer_layout.closeDrawer(Gravity.LEFT)
+                }
+
+                button_menu_timeline.setOnClickListener {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.fragment, TimelineFragment())
+                        .commit()
+                    drawer_layout.closeDrawer(Gravity.LEFT)
+                }
             }
         }
 
@@ -47,27 +69,6 @@ class MainActivity : AppCompatActivity() {
         drawer_layout.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
 
-        navigationView.setNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.menu_calendar -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment, CalendarFragment())
-                        .commit()
-                }
-                R.id.menu_writeDiary -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment, WriteMemoFragment())
-                        .commit()
-                }
-                R.id.menu_timetable -> {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment, TimelineFragment())
-                        .commit()
-                }
-            }
-            drawer_layout.closeDrawer(GravityCompat.START)
-            true
-        }
     }
 
     override fun onBackPressed() {
