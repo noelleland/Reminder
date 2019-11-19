@@ -14,5 +14,5 @@ interface DiaryDao : BaseDao<DiaryEntity> {
     fun getMemoById(id: Int): DiaryEntity
 
     @Query("DELETE FROM ${DiaryEntity.TABLE_NAME}")
-    fun deleteAllUsers()
+    fun deleteAllDiary()
 }

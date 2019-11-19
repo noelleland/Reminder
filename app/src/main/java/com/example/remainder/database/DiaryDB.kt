@@ -19,7 +19,6 @@ abstract class DiaryDB : RoomDatabase() {
                 synchronized(DiaryDB::class) {
                     INSTANCE = Room.databaseBuilder(context.applicationContext,
                                 DiaryDB::class.java, DiaryEntity.TABLE_NAME + ".db")
-                                .fallbackToDestructiveMigration()
                                 .build()
                 }
             }

@@ -14,6 +14,6 @@ interface MemoDao : BaseDao<MemoEntity> {
     fun getMemoById(id: Int): MemoEntity
 
     @Query("DELETE FROM ${MemoEntity.TABLE_NAME}")
-    fun deleteAllUsers()
+    fun deleteAllMemo()
 
 }
