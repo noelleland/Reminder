@@ -20,8 +20,8 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
@@ -46,15 +46,13 @@
                 android:id="@+id/button_menu_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Button"
-                android:visibility="visible"
-                tools:visibility="visible" />
+                android:text="@string/search" />
 
             <Button
                 android:id="@+id/button_menu_settings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Button" />
+                android:text="@string/settings" />
         </LinearLayout>
     </LinearLayout>
 

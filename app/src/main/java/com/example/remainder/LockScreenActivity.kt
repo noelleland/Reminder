@@ -1,17 +1,19 @@
 package com.example.remainder
 
+import android.app.KeyguardManager
+import android.content.Context
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-
-import kotlinx.android.synthetic.main.activity_lock_screen.*
 
 class LockScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setShowWhenLocked(true)
+        setTurnScreenOn(true)
+        val keyguardManager = getSystemService(Context.KEYGUARD_SERVICE) as? KeyguardManager?
+        keyguardManager?.requestDismissKeyguard(this, null)
         setContentView(R.layout.activity_lock_screen)
-
     }
 
 }
