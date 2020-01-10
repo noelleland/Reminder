@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.remainder.App
+import com.example.remainder.application.App
 import com.example.remainder.R
-import com.example.remainder.ScreenService
+import com.example.remainder.application.ScreenService
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 
 class SettingsFragment : Fragment() {
@@ -32,6 +32,15 @@ class SettingsFragment : Fragment() {
             }
             App.globalSharedPreferences.lockScreen = isChecked
         }
+
+        view.downloadDefaultButton.setOnClickListener {
+            App.globalSharedPreferences.CONNECTION_CONTROLLER.downLoadDefault()
+        }
+
+        view.syncWithServerButton.setOnClickListener {
+            App.globalSharedPreferences.CONNECTION_CONTROLLER.syncWithServer()
+        }
+
         return view
     }
 }

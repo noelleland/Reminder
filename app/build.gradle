@@ -23,10 +23,18 @@ android {
 }
 
 dependencies {
+    def room_version = "2.1.0-alpha03"
 
-    implementation "android.arch.persistence.room:runtime:1.1.1"
-    kapt "android.arch.persistence.room:compiler:1.1.1"
-    kaptTest "android.arch.persistence.room:testing:1.1.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version" // use kapt for Kotlin
+    // optional - RxJava support for Room
+    implementation "androidx.room:room-rxjava2:$room_version"
+    // optional - Guava support for Room, including Optional and ListenableFuture
+    implementation "androidx.room:room-guava:$room_version"
+    // optional - Coroutines support for Room
+    implementation "androidx.room:room-coroutines:$room_version"
+    // Test helpers
+    testImplementation "androidx.room:room-testing:$room_version"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

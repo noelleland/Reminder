@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Remainder</string>
+    <string name="app_name">Reminder</string>
     <string name="title_activity_lock_screen">LockScreenActivity</string>
     <string name="button_LockScreenOK">OK</string>
     <string name="button_LockScreenCancel">Cancel</string>
