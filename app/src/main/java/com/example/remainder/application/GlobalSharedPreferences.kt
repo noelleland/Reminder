@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 
 class GlobalSharedPreferences(context: Context) {
 
-    var USER_NAME: String? = null
+    var USER_NAME: String? = "hoon"
     val PREFS_FILENAME = "appData"
     val PREF_KEY_LOCK = "Lock"
     val DATABASE_CONTROLLER = DatabaseController

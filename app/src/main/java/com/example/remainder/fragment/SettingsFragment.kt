@@ -25,10 +25,10 @@ class SettingsFragment : Fragment() {
         view.switch_lockscreen.setOnCheckedChangeListener { buttonView, isChecked ->
             val intent: Intent =  Intent(context, ScreenService::class.java);
             if (isChecked) {
-                context?.startService(intent);
+                context?.startService(intent)
             }
             else {
-                context?.stopService(intent);
+                context?.stopService(intent)
             }
             App.globalSharedPreferences.lockScreen = isChecked
         }

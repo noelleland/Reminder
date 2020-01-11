@@ -9,7 +9,7 @@ import io.reactivex.Single
 @Dao
 interface SentenceDao : BaseDao<SentenceEntity> {
 
-    @Query("SELECT * FROM ${SentenceEntity.TABLE_NAME} WHERE 'idx' = :idx")
+    @Query("SELECT * FROM ${SentenceEntity.TABLE_NAME} WHERE ${SentenceEntity.TABLE_NAME}.idx = :idx")
     fun selectById(idx: Int): Maybe<SentenceEntity>
 
     @Query("SELECT * FROM ${SentenceEntity.TABLE_NAME}")

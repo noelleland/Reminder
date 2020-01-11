@@ -9,7 +9,7 @@ import io.reactivex.Single
 @Dao
 interface UserDataDao : BaseDao<UserDataEntity> {
 
-    @Query("SELECT * FROM ${UserDataEntity.TABLE_NAME} WHERE 'idx' = :idx")
+    @Query("SELECT * FROM ${UserDataEntity.TABLE_NAME} WHERE ${UserDataEntity.TABLE_NAME}.idx = :idx")
     fun selectById(idx: Int): UserDataEntity
 
     @Query("SELECT * FROM ${UserDataEntity.TABLE_NAME}")

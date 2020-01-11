@@ -18,7 +18,7 @@ class DatabaseController {
 
     init {
         val database = AppDatabase.getInstance(App.INSTANCE)
-        memoDao = database!!.memoDao()
+        memoDao = database.memoDao()
         questionDao = database.questionDao()
         sentenceDao = database.sentenceDao()
         wordDao = database.wordDao()
@@ -49,7 +49,7 @@ class DatabaseController {
         return returnList!!
     }
 
-    fun entityControl(entity: BaseEntity, taskType: TaskType) {
+    private fun entityControl(entity: BaseEntity, taskType: TaskType) {
         when (entity) {
             is MemoEntity -> DMLAsyncTask(memoDao, taskType).execute(entity)
             is QuestionEntity -> DMLAsyncTask(questionDao, taskType).execute(entity)
@@ -71,19 +71,19 @@ class DatabaseController {
     fun setDefault(jsonString: String) {
         val tablesObject = JSONObject(jsonString)
         val tableArray: JSONArray = tablesObject.getJSONArray("tables")
-        for (index in 0..tableArray.length()) {
+        for (index in 0 until tableArray.length()) {
             val table = tableArray.getJSONObject(index)
             val tableName = table.getString("table_name")
             val tableData = table.getJSONArray("data")
-            for (index2 in 0..tableData.length()) {
+            for (index2 in 0 until tableData.length()) {
                 when (tableName) {
-                    "TAG" -> {
+                    "tag" -> {
                         val tagObject = tableData.getJSONObject(index2)
                         val tagType = tagObject.getString("tagType")
                         val content = tagObject.getString("content")
                         entityControl(TagEntity(null, tagType, content), TaskType.INSERT)
                     }
-                    "QUESTION" -> {
+                    "question" -> {
                         val tagObject = tableData.getJSONObject(index2)
                         val content = tagObject.getString("content")
                         val tag_idx = tagObject.getInt("tag_idx")

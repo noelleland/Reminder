@@ -9,7 +9,7 @@ import io.reactivex.Single
 @Dao
 interface WordDao : BaseDao<WordEntity> {
 
-    @Query("SELECT * FROM ${WordEntity.TABLE_NAME} WHERE 'idx' = :idx")
+    @Query("SELECT * FROM ${WordEntity.TABLE_NAME} WHERE ${WordEntity.TABLE_NAME}.idx = :idx")
     fun selectById(idx: Int): WordEntity
 
     @Query("SELECT * FROM ${WordEntity.TABLE_NAME}")

@@ -8,7 +8,7 @@ import io.reactivex.Single
 @Dao
 interface MemoDao : BaseDao<MemoEntity> {
 
-    @Query("SELECT * FROM ${MemoEntity.TABLE_NAME} WHERE 'idx' = :idx")
+    @Query("SELECT * FROM ${MemoEntity.TABLE_NAME} WHERE ${MemoEntity.TABLE_NAME}.idx = :idx")
     fun getMemo(idx: Int): Single<MemoEntity>
 
     @Query("SELECT * FROM ${MemoEntity.TABLE_NAME}")

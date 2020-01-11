@@ -18,7 +18,7 @@ data class TagEntity(@PrimaryKey(autoGenerate = true) val idx: Int?,
     override fun toJsonObject(): JSONObject {
         val entityObject = JSONObject()
         entityObject.put("idx", idx)
-        entityObject.put("tagTyoe", tagType)
+        entityObject.put("tagType", tagType)
         entityObject.put("content", content)
         return entityObject
     }

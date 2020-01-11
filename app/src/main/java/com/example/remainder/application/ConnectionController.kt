@@ -3,9 +3,11 @@ package com.example.remainder.application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
+import android.util.Log
 import com.example.remainder.database.entity.BaseEntity
 import com.example.remainder.database.entity.EntityType
 import kotlinx.coroutines.*
+import org.json.JSONArray
 import org.json.JSONObject
 import java.io.*
 import java.net.HttpURLConnection
@@ -36,33 +38,43 @@ class ConnectionController {
     }
 
 
-    private suspend fun httpGet(): String {
+    private suspend fun httpGet() {
         return withContext(Dispatchers.IO) {
             val url = URL(serverURL)
             val conn = url.openConnection() as HttpURLConnection
             conn.requestMethod = "GET"
             if (conn.responseCode == HttpURLConnection.HTTP_OK) {
-                val stream = BufferedInputStream(conn.inputStream)
                 val stringBuilder = StringBuilder()
-                BufferedReader(InputStreamReader(stream)).forEachLine { stringBuilder.append(it) }
+                conn.inputStream.bufferedReader().use { it.lines().forEach { line -> stringBuilder.append(line)} }
                 App.globalSharedPreferences.DATABASE_CONTROLLER.getInstance().setDefault(stringBuilder.toString())
             }
-            ""
         }
     }
 
 
-    private suspend fun httpPost(): String {
+    private suspend fun httpPost() {
         return withContext(Dispatchers.IO) {
             val url = URL(serverURL)
             val conn = url.openConnection() as HttpURLConnection
+            conn.doInput = true
+            conn.doOutput = true
             conn.requestMethod = "POST"
+            conn.setRequestProperty("Connection", "close")
             conn.setRequestProperty("Content-Type", "application/json; charset=utf-8")
             val databaseJsonObject = buildDatabaseJsonObject()
             setPostRequestContent(conn, databaseJsonObject)
-            conn.connect()
-            conn.responseMessage + ""
         }
+    }
+
+    private fun setPostRequestContent(conn: HttpURLConnection, databaseJsonObject: JSONObject) {
+        val outputStream = conn.outputStream
+        val bufferedWriter = BufferedWriter(OutputStreamWriter(outputStream, "UTF-8"))
+        bufferedWriter.write(databaseJsonObject.toString())
+        bufferedWriter.flush()
+        if (conn.responseCode == HttpURLConnection.HTTP_OK) {
+
+        }
+
     }
 
     private fun checkNetworkConnection(): Boolean {
@@ -75,29 +87,19 @@ class ConnectionController {
             actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
             else -> false
         }
-
-    }
-    private fun setPostRequestContent(conn: HttpURLConnection, databaseJsonObject: JSONObject) {
-        val outputStream = conn.outputStream
-        val bufferedWriter = BufferedWriter(OutputStreamWriter(outputStream, "UTF-8"))
-        bufferedWriter.write(databaseJsonObject.toString())
-        bufferedWriter.flush()
-        bufferedWriter.close()
-        outputStream.close()
     }
 
     private fun buildDatabaseJsonObject(): JSONObject {
         val databaseJSONObject = JSONObject()
         EntityType.values().forEach {
-            entityType ->  databaseJSONObject.accumulate(entityType.tableName, this.getTableJsonObject(entityType.tableName))
+            entityType -> putTableJsonObject(databaseJSONObject, entityType.tableName)
         }
         return databaseJSONObject
     }
 
-    private fun getTableJsonObject(tableName: String): JSONObject {
+    private fun putTableJsonObject(databaseJsonObject: JSONObject, tableName: String) {
         val entityList: List<BaseEntity> = App.globalSharedPreferences.DATABASE_CONTROLLER.getInstance().getAll(tableName)
-        val tableJsonObject = JSONObject()
-        entityList.forEach { entity -> tableJsonObject.accumulate(tableName, entity.toJsonObject()) }
-        return tableJsonObject
+        databaseJsonObject.put(tableName, JSONArray())
+        entityList.forEach { entity -> databaseJsonObject.accumulate(tableName, entity.toJsonObject()) }
     }
 }

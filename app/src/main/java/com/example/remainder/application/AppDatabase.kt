@@ -4,11 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.remainder.database.dao.*
 import com.example.remainder.database.entity.*
 
 @Database(entities = [MemoEntity::class, QuestionEntity::class, SentenceEntity::class, TagEntity::class
-, UserDataEntity::class, WordEntity::class], version = 1)
+, UserDataEntity::class, WordEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun memoDao(): MemoDao
@@ -26,8 +27,8 @@ abstract class AppDatabase : RoomDatabase() {
                 synchronized(AppDatabase::class) {
                     INSTANCE = Room.databaseBuilder(context.applicationContext,
                             AppDatabase::class.java, "app_database.db")
-                            .fallbackToDestructiveMigration()
                             .allowMainThreadQueries()
+                            .fallbackToDestructiveMigration()
                             .build()
                 }
 

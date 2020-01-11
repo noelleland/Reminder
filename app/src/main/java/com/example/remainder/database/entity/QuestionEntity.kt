@@ -2,11 +2,12 @@ package com.example.remainder.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.example.remainder.database.entity.QuestionEntity.Companion.TABLE_NAME
 import org.json.JSONObject
 
-@Entity(tableName = TABLE_NAME)
+@Entity(tableName = TABLE_NAME, indices = [Index(value=["content"], unique = true)])
 data class QuestionEntity(@PrimaryKey(autoGenerate = true) val idx: Int?,
                           @ColumnInfo(name = "content") var content: String,
                           @ColumnInfo(name = "tag_idx") var tag_idx: Int) : BaseEntity {
