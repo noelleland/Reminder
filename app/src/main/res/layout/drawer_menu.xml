@@ -57,21 +57,27 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button_menu_calendar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/word_calendar" />
-
-    <Button
         android:id="@+id/button_menu_writememo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/word_writeMemo" />
 
     <Button
+        android:id="@+id/memo_mamage_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/word_memoManage" />
+
+    <Button
         android:id="@+id/button_menu_timeline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/word_timeline" />
+
+    <Button
+        android:id="@+id/button_menu_calendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/word_calendar" />
 
 </LinearLayout>

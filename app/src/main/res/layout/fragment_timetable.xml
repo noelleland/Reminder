@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/timetableLinearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pastelBlue"
+    android:orientation="vertical">
+
+
+    <Button
+        android:id="@+id/dateSelectButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0000년 00월 00일" />
+
+    <com.example.remainder.timetable.RoundTimetableView
+        android:id="@+id/roundTimetableView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <ScrollView
+        android:id="@+id/timelineScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:id="@+id/timelineLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+</LinearLayout>

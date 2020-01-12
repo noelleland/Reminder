@@ -3,4 +3,12 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="pastelRed">#FFB3BA</color>
+    <color name="pastelOrange">#FFDFBA</color>
+    <color name="pastelYellow">#FFFFBA</color>
+    <color name="pastelGreen">#BAFFC9</color>
+    <color name="pastelBlue">#BAE1FF</color>
+    <color name="pastelNight">#9999CC</color>
+    <color name="pastelPurple">#FFC1FF</color>
 </resources>

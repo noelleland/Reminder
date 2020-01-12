@@ -11,7 +11,7 @@ interface MemoDao : BaseDao<MemoEntity> {
     @Query("SELECT * FROM ${MemoEntity.TABLE_NAME} WHERE ${MemoEntity.TABLE_NAME}.idx = :idx")
     fun getMemo(idx: Int): Single<MemoEntity>
 
-    @Query("SELECT * FROM ${MemoEntity.TABLE_NAME}")
+    @Query("SELECT * FROM ${MemoEntity.TABLE_NAME} ORDER BY ${MemoEntity.TABLE_NAME}.writeTime")
     override fun getAll(): Single<List<MemoEntity>>
 
 }
