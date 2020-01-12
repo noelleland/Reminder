@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="memo_entity"
+            type="com.example.remainder.database.entity.MemoEntity" />
+    </data>
+    <LinearLayout
+        android:id="@+id/memoEntityLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/questionText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/pastelYellow"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:text="@{String.valueOf(memo_entity.question_idx)}"/>
+        <TextView
+            android:id="@+id/answerText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/pastelYellow"
+            android:textSize="20sp"
+            android:text="@{memo_entity.answer}"/>
+    </LinearLayout>
+</layout>

@@ -13,4 +13,8 @@
     <string name="settings">설정</string>
     <string name="tilde">~</string>
 
+    <string name="memo_all">전부</string>
+    <string name="memo_term">기간</string>
+    <string name="memo_question">질문</string>
+
 </resources>

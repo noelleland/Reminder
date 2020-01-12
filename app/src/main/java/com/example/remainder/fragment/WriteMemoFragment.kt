@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.remainder.application.App
 import com.example.remainder.activity.LockScreenActivity
@@ -58,6 +59,8 @@ class WriteMemoFragment : Fragment() {
                         , selectedQuestionIndex!!
                         , editText_memo.text.toString())
             databaseController!!.memoInsert(newMemo)
+            editText_memo.text.clear()
+            Toast.makeText(context!!, "메모가 저장되었어요!", Toast.LENGTH_SHORT).show()
             App.globalSharedPreferences.CONNECTION_CONTROLLER.syncWithServer()
             if (activity is LockScreenActivity) {
                 activity?.finish()

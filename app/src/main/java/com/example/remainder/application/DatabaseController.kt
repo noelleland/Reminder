@@ -49,6 +49,10 @@ class DatabaseController {
         return returnList!!
     }
 
+    fun getAllMemoByDateString(dateString: String): List<MemoEntity> {
+        return memoDao.getMemo("${dateString}%").blockingGet()
+    }
+
     private fun entityControl(entity: BaseEntity, taskType: TaskType) {
         when (entity) {
             is MemoEntity -> DMLAsyncTask(memoDao, taskType).execute(entity)
@@ -58,6 +62,10 @@ class DatabaseController {
             is UserDataEntity -> DMLAsyncTask(userDataDao, taskType).execute(entity)
             is TagEntity -> DMLAsyncTask(tagDao, taskType).execute(entity)
         }
+    }
+
+    fun getQuestionContent(index: Int): String {
+        return questionDao.getQuestionString(index).blockingGet()
     }
 
     fun getQuestionIndexByContent(content: String): Int {

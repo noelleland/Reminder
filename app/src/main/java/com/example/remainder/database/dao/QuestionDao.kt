@@ -11,10 +11,15 @@ interface QuestionDao : BaseDao<QuestionEntity> {
     @Query("SELECT * FROM ${QuestionEntity.TABLE_NAME} WHERE ${QuestionEntity.TABLE_NAME}.idx = :idx")
     fun getQuestion(idx: Int): Single<QuestionEntity>
 
+    @Query("SELECT ${QuestionEntity.TABLE_NAME}.content FROM ${QuestionEntity.TABLE_NAME} WHERE ${QuestionEntity.TABLE_NAME}.idx = :index")
+    fun getQuestionString(index: Int): Single<String>
+
     @Query("SELECT ${QuestionEntity.TABLE_NAME}.idx FROM ${QuestionEntity.TABLE_NAME} WHERE ${QuestionEntity.TABLE_NAME}.content = :content")
     fun getQuestionIndexByContent(content: String): Single<Int>
 
     @Query("SELECT * FROM ${QuestionEntity.TABLE_NAME}")
     override fun getAll(): Single<List<QuestionEntity>>
+
+
 
 }

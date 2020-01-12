@@ -11,4 +11,5 @@
     <color name="pastelBlue">#BAE1FF</color>
     <color name="pastelNight">#9999CC</color>
     <color name="pastelPurple">#FFC1FF</color>
+    <color name="liteGray">#DDDDDD</color>
 </resources>

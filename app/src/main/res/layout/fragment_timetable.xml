@@ -10,20 +10,17 @@
     <Button
         android:id="@+id/dateSelectButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="0000년 00월 00일" />
+        android:layout_height="wrap_content" />
 
-    <com.example.remainder.timetable.RoundTimetableView
+    <com.example.remainder.view.RoundTimetableView
         android:id="@+id/roundTimetableView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_height="wrap_content" />
 
     <ScrollView
         android:id="@+id/timelineScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/timelineLinearLayout"

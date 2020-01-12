@@ -3,6 +3,7 @@ package com.example.remainder.activity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
+import android.widget.Button
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -21,24 +22,13 @@ class MainActivity : AppCompatActivity() {
 
         val drawerToggle:ActionBarDrawerToggle = object : ActionBarDrawerToggle(
             this, drawer_layout, toolbar, 0, 0) {
-
             override fun onDrawerOpened(drawerView: View) {
                 super.onDrawerOpened(drawerView)
-                button_menu_calendar.setOnClickListener {
-                    fragmentChange(CalendarFragment())
-                }
-                button_menu_writememo.setOnClickListener {
-                    fragmentChange(WriteMemoFragment())
-                }
-                button_menu_timeline.setOnClickListener {
-                    fragmentChange(TimetableFragment())
-                }
-                button_menu_settings.setOnClickListener {
-                    fragmentChange(SettingsFragment())
-                }
-                memo_mamage_button.setOnClickListener {
-                    fragmentChange(ManageMemoFragment())
-                }
+                bindButtonAndFragment(button_menu_calendar, CalendarFragment())
+                bindButtonAndFragment(button_menu_writememo, WriteMemoFragment())
+                bindButtonAndFragment(button_menu_timeline, TimetableFragment())
+                bindButtonAndFragment(button_menu_settings, SettingsFragment())
+                bindButtonAndFragment(memo_mamage_button, ManageMemoFragment())
             }
         }
         drawerToggle.isDrawerIndicatorEnabled = true
@@ -46,8 +36,8 @@ class MainActivity : AppCompatActivity() {
         drawerToggle.syncState()
     }
 
-    private fun fragmentChange(fragment: Fragment) {
-        memo_mamage_button.setOnClickListener {
+    private fun bindButtonAndFragment(button: Button, fragment: Fragment) {
+        button.setOnClickListener {
             supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment, fragment)
                     .commit()
