@@ -3,7 +3,7 @@
     android:id="@+id/timetableLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/pastelBlue"
+    android:background="@color/titlePurpleWrite"
     android:orientation="vertical">
 
 
@@ -15,18 +15,23 @@
     <com.example.remainder.view.RoundTimetableView
         android:id="@+id/roundTimetableView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/round_timetable_padding"
+        android:layout_marginTop="@dimen/round_timetable_padding"
+        android:layout_marginEnd="@dimen/round_timetable_padding"
+        android:layout_marginBottom="@dimen/round_timetable_padding" />
 
     <ScrollView
         android:id="@+id/timelineScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/timelineLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical">
+        </LinearLayout>
     </ScrollView>
 
 </LinearLayout>

@@ -25,9 +25,9 @@ class ManageMemoFragment : Fragment() {
         view.searchButton.setOnClickListener {
 
         }
-        val memoList = view.memoScrollView.memoListLayout
+        val memoList = view.memoListLayout
         for (memoEntity in memoEntities) {
-            memoList.addView(memoEntity.getMemoView(context!!, view.memoListLayout))
+            memoList.addView(memoEntity.getMemoView(context!!, memoList))
         }
         return view
     }

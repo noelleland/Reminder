@@ -12,4 +12,9 @@
     <color name="pastelNight">#9999CC</color>
     <color name="pastelPurple">#FFC1FF</color>
     <color name="liteGray">#DDDDDD</color>
+
+    <color name="titlePurple">#EECCFF</color>
+    <color name="titlePurpleDark">#CCAAFF</color>
+    <color name="titlePurpleWrite">#FFF0FF</color>
+
 </resources>

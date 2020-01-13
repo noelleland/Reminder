@@ -1,6 +1,7 @@
 package com.example.remainder.application
 
 import android.os.AsyncTask
+import android.util.Log
 import com.example.remainder.database.TaskType
 import com.example.remainder.database.dao.*
 import com.example.remainder.database.entity.*
@@ -50,7 +51,8 @@ class DatabaseController {
     }
 
     fun getAllMemoByDateString(dateString: String): List<MemoEntity> {
-        return memoDao.getMemo("${dateString}%").blockingGet()
+        Log.i("datestring", "${dateString}%")
+        return memoDao.getMemoByDate("${dateString}%").blockingGet()
     }
 
     private fun entityControl(entity: BaseEntity, taskType: TaskType) {

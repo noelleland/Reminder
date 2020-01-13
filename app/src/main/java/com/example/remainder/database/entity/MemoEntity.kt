@@ -35,6 +35,9 @@ data class MemoEntity(@PrimaryKey(autoGenerate = true) val idx: Int?,
 
         init {
             val bind: MemoEntityBinding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.memo_entity, parent, true)
+            attributeSet.let {
+
+            }
             bind.memoEntity = memoEntity
         }
 
