@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <com.example.remainder.view.RoundTimetableView
+    <com.example.reminder.view.RoundTimetableView
         android:id="@+id/roundTimetableView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

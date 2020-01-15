@@ -1,0 +1,20 @@
+package com.example.reminder.database.dao
+
+import androidx.room.Dao
+import androidx.room.Query
+import com.example.reminder.database.entity.MemoEntity
+import io.reactivex.Single
+
+@Dao
+interface MemoDao : BaseDao<MemoEntity> {
+
+    @Query("SELECT * FROM ${MemoEntity.TABLE_NAME} WHERE ${MemoEntity.TABLE_NAME}.idx = :idx")
+    fun getMemo(idx: Int): Single<MemoEntity>
+
+    @Query("SELECT * FROM ${MemoEntity.TABLE_NAME} ORDER BY ${MemoEntity.TABLE_NAME}.writeTime")
+    override fun getAll(): Single<List<MemoEntity>>
+
+    @Query("SELECT * FROM ${MemoEntity.TABLE_NAME} WHERE ${MemoEntity.TABLE_NAME}.writeTime LIKE :dateString ORDER BY ${MemoEntity.TABLE_NAME}.writeTime")
+    fun getMemoByDate(dateString : String): Single<List<MemoEntity>>
+
+}
