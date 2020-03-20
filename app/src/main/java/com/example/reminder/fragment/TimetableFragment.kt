@@ -1,59 +1,63 @@
 package com.example.reminder.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.get
 import androidx.core.widget.doAfterTextChanged
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.reminder.R
-import com.example.reminder.application.App
+import com.example.reminder.adapter.MemoListAdapter
 import com.example.reminder.application.ViewListenerManager
-import com.example.reminder.database.entity.MemoEntity
+import com.example.reminder.view.MemoViewModel
 import kotlinx.android.synthetic.main.fragment_timetable.*
 import kotlinx.android.synthetic.main.fragment_timetable.view.*
 import kotlin.math.atan
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-class TimetableFragment : Fragment() {
+class TimetableFragment : BaseFragment() {
 
-    private var memoEntities: List<MemoEntity>? = null
+    private val memoListAdapter = MemoListAdapter()
+    private lateinit var memoListViewModel: MemoViewModel
     private var lastTouchDownXY = FloatArray(2)
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        memoListViewModel = ViewModelProvider(this).get(MemoViewModel::class.java)
+        memoListViewModel.getMemoList().observe(viewLifecycleOwner, Observer { memoList ->
+            memoListAdapter.setMemoList(memoList)
+        })
+
         val view = inflater.inflate(R.layout.fragment_timetable, null)
         ViewListenerManager.setDatePickerListener(context!!, view.dateSelectButton)
         updateMemo(view)
         view.dateSelectButton.doAfterTextChanged {
-            roundTimetableView.setMemoEntities(view.dateSelectButton.text.toString())
-            roundTimetableView.invalidate()
             updateMemo(view)
         }
+
+        view.timeTableRecyclerView.adapter = memoListAdapter
+        view.timeTableRecyclerView.layoutManager = LinearLayoutManager(context)
+        view.timeTableRecyclerView.setHasFixedSize(true)
+
         return view
     }
 
     private fun updateMemo(view: View) {
-        memoEntities = App.globalSharedPreferences.DATABASE_CONTROLLER.getInstance()
-                .getAllMemoByDateString(view.dateSelectButton.text.toString())
-        val memoList = view.timelineLinearLayout
-        memoList.removeAllViews()
-        for (memoEntity in memoEntities!!) {
-            memoList.addView(memoEntity.getMemoView(context!!, memoList))
-        }
-        view.roundTimetableView.setOnTouchListener(object : View.OnTouchListener {
-            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-                if (event!!.actionMasked == MotionEvent.ACTION_DOWN) {
-                    lastTouchDownXY[0] = event.rawX
-                    lastTouchDownXY[1] = event.rawY
-                }
-                return false
+        memoListViewModel.setDateString(view.dateSelectButton.text.toString())
+        view.roundTimetableView.setMemoList(memoListViewModel.getMemoList())
+        memoListAdapter.notifyDataSetChanged()
+        view.roundTimetableView.setOnTouchListener { _, event ->
+            if (event!!.actionMasked == MotionEvent.ACTION_DOWN) {
+                lastTouchDownXY[0] = event.rawX
+                lastTouchDownXY[1] = event.rawY
             }
-        })
+            false
+        }
         view.roundTimetableView.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 val position = IntArray(2)
@@ -63,12 +67,12 @@ class TimetableFragment : Fragment() {
                 var index = 0
                 for (area in roundTimetableView.areaSet!!) {
                     if (getTouchedArch(lastTouchDownXY[0] - tableCenterX, tableCenterY - lastTouchDownXY[1], area.key, area.value)) {
-                        view.timelineScrollView.scrollY = memoList.get(index * 2).y.toInt()
-                        Log.i("entry", "${index}, ${memoList.get(index * 2)}")
+                        view.timeTableRecyclerView.layoutManager!!.scrollToPosition(index)
                         return
                     }
                     index++
                 }
+
             }
         })
     }
@@ -89,14 +93,13 @@ class TimetableFragment : Fragment() {
 
     private fun positionToAngle(x: Float, y: Float): Float {
         var beforeDegree = atan(y / x) * 180 / Math.PI
-        if (x >= 0) {
+        beforeDegree = if (x >= 0) {
             if (y >= 0)
-                beforeDegree = 360f - beforeDegree
+                360f - beforeDegree
             else
-                beforeDegree = -beforeDegree
-        }
-        else {
-            beforeDegree = 180f - beforeDegree
+                -beforeDegree
+        } else {
+            180f - beforeDegree
         }
         return beforeDegree.toFloat()
     }

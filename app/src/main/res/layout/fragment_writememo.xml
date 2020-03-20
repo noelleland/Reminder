@@ -9,7 +9,6 @@
     android:background="@color/titlePurpleWrite"
     >
 
-
     <Spinner
         android:id="@+id/spinner_question"
         android:layout_width="372dp"
@@ -30,7 +29,8 @@
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/button_memo_submit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/button_memo_submit"

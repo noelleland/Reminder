@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
             this, drawer_layout, toolbar, 0, 0) {
             override fun onDrawerOpened(drawerView: View) {
                 super.onDrawerOpened(drawerView)
-                bindButtonAndFragment(button_menu_calendar, CalendarFragment())
                 bindButtonAndFragment(button_menu_writememo, WriteMemoFragment())
                 bindButtonAndFragment(button_menu_timeline, TimetableFragment())
                 bindButtonAndFragment(button_menu_settings, SettingsFragment())

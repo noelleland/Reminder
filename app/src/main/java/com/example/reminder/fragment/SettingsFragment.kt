@@ -11,11 +11,7 @@ import com.example.reminder.R
 import com.example.reminder.application.ScreenService
 import kotlinx.android.synthetic.main.fragment_settings.view.*
 
-class SettingsFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+class SettingsFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

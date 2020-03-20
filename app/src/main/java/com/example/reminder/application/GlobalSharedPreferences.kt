@@ -8,7 +8,7 @@ class GlobalSharedPreferences(context: Context) {
     var USER_NAME: String? = "hoon"
     val PREFS_FILENAME = "appData"
     val PREF_KEY_LOCK = "Lock"
-    val DATABASE_CONTROLLER = DatabaseController
+    val REPOSITORY = AppRepository.getInstance()
     val CONNECTION_CONTROLLER = ConnectionController.getInstance()
     val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREFS_FILENAME, 0)
     /* 파일 이름과 EditText를 저장할 Key 값을 만들고 prefs 인스턴스 초기화 */

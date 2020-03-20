@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.reminder.database.dao.*
 import com.example.reminder.database.entity.*
+import kotlinx.coroutines.CoroutineScope
 
 @Database(entities = [MemoEntity::class, QuestionEntity::class, SentenceEntity::class, TagEntity::class
 , UserDataEntity::class, WordEntity::class], version = 1, exportSchema = false)
@@ -23,11 +24,9 @@ abstract class AppDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): AppDatabase {
             if(INSTANCE == null) {
-                synchronized(AppDatabase::class) {
+                synchronized(this) {
                     INSTANCE = Room.databaseBuilder(context.applicationContext,
                             AppDatabase::class.java, "app_database.db")
-                            .allowMainThreadQueries()
-                            .fallbackToDestructiveMigration()
                             .build()
                 }
 

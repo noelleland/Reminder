@@ -12,7 +12,7 @@ import com.example.reminder.database.entity.MemoEntity.Companion.TABLE_NAME
 import com.example.reminder.databinding.MemoEntityBinding
 import org.json.JSONObject
 
-@Entity(tableName =  TABLE_NAME, indices = arrayOf(Index(value = ["userId", "writeTime"], unique = true)))
+@Entity(tableName =  TABLE_NAME, indices = [Index(value = ["userId", "writeTime"], unique = true)])
 data class MemoEntity(@PrimaryKey(autoGenerate = true) val idx: Int?,
                       @ColumnInfo(name = "userId") var userId: String,
                       @ColumnInfo(name = "writeTime") var writeTime: String,

@@ -27,8 +27,8 @@
         <receiver android:enabled="true" android:name="com.example.reminder.application.ScreenReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
-                <action android:name="android.intent.action.SCREEN_ON"/>
                 <action android:name="android.intent.action.SCREEN_OFF"/>
+                <action android:name="ServiceRestart"/>
             </intent-filter>
         </receiver>
 

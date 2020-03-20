@@ -23,4 +23,8 @@ data class QuestionEntity(@PrimaryKey(autoGenerate = true) val idx: Int?,
         return entityObject
     }
 
+    override fun toString(): String {
+        return content
+    }
+
 }

@@ -16,7 +16,7 @@ class App : Application() {
 
     override fun onCreate() {
         globalSharedPreferences = GlobalSharedPreferences(applicationContext)
-        startService(Intent(applicationContext, ScreenService::class.java))
+        //startService(Intent(applicationContext, ScreenService::class.java))
         super.onCreate()
     }
 }

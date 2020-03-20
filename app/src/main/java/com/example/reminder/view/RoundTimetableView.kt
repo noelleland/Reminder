@@ -7,12 +7,15 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModelProvider
 import com.example.reminder.R
 import com.example.reminder.application.App
 import com.example.reminder.database.entity.MemoEntity
 import java.time.LocalDate
 import java.util.regex.Matcher
 import java.util.regex.Pattern
+import kotlin.coroutines.coroutineContext
 
 class RoundTimetableView @JvmOverloads
 constructor(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: Int = 0) : View(context, attributeSet, defStyleAttr) {
@@ -24,16 +27,14 @@ constructor(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: 
 
     val rectfLength = (context.resources.displayMetrics.widthPixels - context.resources.displayMetrics.density * 60)
     private val rectF = RectF(0f, 0f, rectfLength, rectfLength)
-    private var memoEntities: List<MemoEntity>? = null
 
     var areaSet: LinkedHashMap<Float, Float>? = LinkedHashMap()
 
-    init {
-        setMemoEntities(LocalDate.now().toString())
-    }
+    private var memoList: LiveData<List<MemoEntity>>? = null
 
-    fun setMemoEntities(dateString: String) {
-        memoEntities = App.globalSharedPreferences.DATABASE_CONTROLLER.getInstance().getAllMemoByDateString(dateString)
+    fun setMemoList(memoList: LiveData<List<MemoEntity>>) {
+        this.memoList = memoList
+        this.invalidate()
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -41,13 +42,17 @@ constructor(context: Context, attributeSet: AttributeSet? = null, defStyleAttr: 
         paint.color = getColor(R.color.liteGray)
         canvas!!.drawArc(rectF, 0f, 360f, true, paint)
 
-        for (index in 0 until (memoEntities!!.size)) {
-            paint.color = colors[index % colors.size]
-            val startDegree = getDegreeFromTimestamp(memoEntities!![Math.floorMod(index - 1, memoEntities!!.size)].writeTime)
-            val endDegree = getDegreeFromTimestamp(memoEntities!![index].writeTime)
-            val sweepAngle = floatModulo(endDegree - startDegree, 360f)
-            areaSet!!.put(startDegree, sweepAngle)
-            canvas.drawArc(rectF, startDegree, sweepAngle, true, paint)
+        val memoEntities = memoList!!.value
+
+        if (memoEntities != null) {
+            for (index in 0 until (memoEntities.size)) {
+                paint.color = colors[index % colors.size]
+                val startDegree = getDegreeFromTimestamp(memoEntities[Math.floorMod(index - 1, memoEntities.size)].writeTime)
+                val endDegree = getDegreeFromTimestamp(memoEntities[index].writeTime)
+                val sweepAngle = floatModulo(endDegree - startDegree, 360f)
+                areaSet!![startDegree] = sweepAngle
+                canvas.drawArc(rectF, startDegree, sweepAngle, true, paint)
+            }
         }
         super.onDraw(canvas)
     }
