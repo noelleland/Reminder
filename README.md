@@ -6,7 +6,7 @@ NARANG팀 졸업프로젝트 - 충남대학교 컴퓨터공학과
 자연어처리 기술(음성인식, 사진)을 활용한 일정관리 및 일기 어플리케이션 개발
 <br />
 # 조원
-- 김연훈 : 201402330, yeonhunkim@o.cnu.ac.kr 
+- 김연훈 : 201402330, yeonhunkim@mensakorea.org (yeonhunkim@o.cnu.ac.kr) 
 - 이동원 : 201402387, 201402387@o.cnu.ac.kr
 - 김노은 : 201604136, 201604136@o.cnu.ac.kr
 <br />
