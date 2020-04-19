@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.drawer_menu.*
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        //프로젝트 재커밋
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
